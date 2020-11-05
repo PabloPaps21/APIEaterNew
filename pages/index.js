@@ -3,6 +3,9 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Footer from './components/footer'
 
 export default function Home() {
   const [character, setCharacter] = useState([]);
@@ -29,12 +32,13 @@ export default function Home() {
   return(
     <div className="container"> 
       <Head>
-        <title>APIEater</title>
+        <title className="pTitle">APIEater</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-      <h1 className="title">Welcome to Rick & Morty's world</h1>
+      <h1 className="ptitle">Welcome to <span> Rick </span> & <span>Morty's</span> world</h1>
+      <p className="subtitle">you can find some characters and characteristics</p>
       
       <ul className="grid">
         {
@@ -46,7 +50,7 @@ export default function Home() {
                     <a>
                       <div>
                         <img src={persona.image} alt={`${name} Thumbnail`} className='img-grid' />
-                        <h3>{persona.id}_{persona.name}</h3>
+                        <h3><span>"</span>{persona.name}<span>"</span></h3>
                       </div>
                     </a> 
                   </Link>
@@ -54,13 +58,13 @@ export default function Home() {
               );
             })
           ) : 
-        <img src="https://media.giphy.com/media/eiurpkdBMu5h0PzKfr/giphy.gif"/> 
+        <img src="https://media.giphy.com/media/i2tLw5ZyikSFdkeGHT/giphy.gif"/> 
         }
       </ul>
+      <Link href={'/'}><a> <FontAwesomeIcon icon={faHome} style={{color: "#3385ff", fontSize: "30"}}/></a></Link>
       </main>
 
-      
-      <Link href={'/'}><a> <FontAwesomeIcon icon={faHome} /></a></Link>
+      <Footer />
       
       <style jsx>{`
         .container {
@@ -72,28 +76,18 @@ export default function Home() {
           align-items: center;
         }
         main {
-          padding: 5rem 0;
+          padding: 3rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
         }
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        span{
+          color:#3385ff;
         }
-        footer img {
-          margin-left: 0.5rem;
-        }
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        span:hover {
+          color: #00ff99;
         }
         a {
           color: inherit;
@@ -139,10 +133,9 @@ export default function Home() {
           list-style: none;
           margin-left: 0;
           padding-left: 0;
-          background: #cba3d9;
+          
         }
         .card {
-          
           margin: 20px;
           flex-basis: 45%;
           padding: 10px;
@@ -170,11 +163,18 @@ export default function Home() {
           font-size: 1.25rem;
           line-height: 1.5;
         }
-        .logo {
-          height: 1em;
+        .ptitle {
+          font-size: 3rem;
         }
-        .search input {
-          margin-right: .5em;
+        .subtitle {
+          font-size: 1.5rem;
+        }
+        .img-grid {
+          filter: grayscale(100%);
+          border-radius: 50%;
+        }
+        .img-grid:hover{
+          filter: none;
         }
         @media (max-width: 600px) {
           .grid {
@@ -184,15 +184,15 @@ export default function Home() {
           .img-grid {
             width: 100%;
           }
-          .search input {
-            margin-right: 0;
-            margin-bottom: .5em;
+          .ptitle {
+            font-size: 1.8rem;
+            text-align: center;
+          }
+          .subtitle {
+            text-align: center;
+            font-size: 1rem;
           }
 
-          .search input,
-          .search button {
-            width: 100%;
-          }
         }
       `}</style>
 

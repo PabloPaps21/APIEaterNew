@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from 'next/link';
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Footer from '../components/footer'
 
 
 const Detail =  ( props ) =>  {
@@ -13,28 +14,30 @@ const Detail =  ( props ) =>  {
 		<div className="container">
 			<main>
 
-			<Link href={'/'}><a> <FontAwesomeIcon icon={faHome} /></a></Link>
-			<h1>Perfil</h1>
+			<Link href={'/'}><a> <FontAwesomeIcon icon={faHome} style={{color: "#3385ff", fontSize: "30"}}/></a></Link>
+			<h1>{props.name}</h1>
 			<div className="card">
 				<img src={props.image}/>
-				<h2>gender: {props.gender}</h2>
-    		<h2>specie:{props.species}</h2>
-				<h2>name: {props.name}</h2>
+				{/* }<h2><span>name: </span>{props.name}</h2>*/}
+				<h2><span>status: </span>{props.status}</h2>
+				<h2><span>gender: </span>{props.gender}</h2>
+    		<h2><span>species: </span>{props.species}</h2>
+				<h2><span>origin:  </span>{props.location.name}</h2>
 			</div>
     	
 			</main>
-
+			<Footer />
 			<style jsx>{`
 					.container {
           min-height: 100vh;
           padding: 0 0.5rem;
-          display: flex;
+          dnpm isplay: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
         }
 				main {
-          padding: 5rem 0;
+          padding: 2rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -53,6 +56,9 @@ const Detail =  ( props ) =>  {
           transition: color 0.15s ease, border-color 0.15s ease;
           -webkit-box-shadow: 1px 3px 9px 3px rgba(0,0,0,0.48); 
           box-shadow: 1px 3px 9px 3px rgba(0,0,0,0.48);
+        }
+				span{
+          color:#3385ff;
         }
 			`}</style>
 		</div>
